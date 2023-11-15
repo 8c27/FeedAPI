@@ -21,6 +21,10 @@
       {
          "Name": "[dbo].[feed_information]",
          "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[stock]",
+         "ObjectType": 0
       }
    ],
    "UiHint": "aaaaa\\project.Feeding.dbo",

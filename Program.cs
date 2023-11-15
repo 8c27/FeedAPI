@@ -8,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddControllers();
     // ª`¤Jservice
     builder.Services.AddScoped<IFeedService, FeedService>();
+    builder.Services.AddScoped<IClientService, ClientService>();
+    builder.Services.AddScoped<IStockService, StockService>();
     builder.Services.AddDbContext<FeedingContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("FeedContext")));
 

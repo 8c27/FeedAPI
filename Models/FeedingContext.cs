@@ -20,6 +20,7 @@ namespace FeedAPI.Models
 
         public virtual DbSet<ClientInformation> ClientInformation { get; set; }
         public virtual DbSet<FeedInformation> FeedInformation { get; set; }
+        public virtual DbSet<Stock> Stock { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -48,7 +49,6 @@ namespace FeedAPI.Models
                     .HasColumnName("description");
 
                 entity.Property(e => e.Invoice)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("invoice");
@@ -69,6 +69,7 @@ namespace FeedAPI.Models
                     .HasColumnName("name");
 
                 entity.Property(e => e.Number)
+                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("number");
@@ -90,6 +91,11 @@ namespace FeedAPI.Models
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
+                entity.Property(e => e.Chamfer)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("chamfer");
+
                 entity.Property(e => e.Class)
                     .HasMaxLength(10)
                     .IsUnicode(false)
@@ -105,16 +111,36 @@ namespace FeedAPI.Models
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Description)
-                    .HasMaxLength(200)
+                    .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("description");
+
+                entity.Property(e => e.Ditch)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("ditch");
+
+                entity.Property(e => e.Ear)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("ear");
+
+                entity.Property(e => e.Hole1)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("hole_1");
+
+                entity.Property(e => e.Hole2)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("hole_2");
 
                 entity.Property(e => e.IsDeleted)
                     .HasColumnName("is_deleted")
                     .HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.ItemName)
-                    .HasMaxLength(50)
+                    .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasColumnName("item_name");
 
@@ -123,9 +149,15 @@ namespace FeedAPI.Models
                     .IsUnicode(false)
                     .HasColumnName("item_number");
 
-                entity.Property(e => e.Length)
-                    .HasColumnType("numeric(10, 2)")
-                    .HasColumnName("length");
+                entity.Property(e => e.ListId)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("list_id");
+
+                entity.Property(e => e.Machine)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("machine");
 
                 entity.Property(e => e.Manufacturer)
                     .IsRequired()
@@ -133,10 +165,39 @@ namespace FeedAPI.Models
                     .IsUnicode(false)
                     .HasColumnName("manufacturer");
 
+                entity.Property(e => e.ManufacturerId)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("manufacturer_id");
+
                 entity.Property(e => e.Material)
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("material");
+
+                entity.Property(e => e.Mm)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("mm");
+
+                entity.Property(e => e.Pcs)
+                    .HasColumnType("numeric(10, 2)")
+                    .HasColumnName("pcs");
+
+                entity.Property(e => e.Peel1)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("peel_1");
+
+                entity.Property(e => e.Peel2)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("peel_2");
+
+                entity.Property(e => e.Project)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("project");
 
                 entity.Property(e => e.Quantity)
                     .HasColumnType("numeric(10, 2)")
@@ -146,13 +207,62 @@ namespace FeedAPI.Models
                     .HasColumnType("numeric(10, 2)")
                     .HasColumnName("raise");
 
+                entity.Property(e => e.Size)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("size");
+
+                entity.Property(e => e.Special)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("special");
+
+                entity.Property(e => e.StockId)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("stock_id");
+
+                entity.Property(e => e.Taper)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("taper");
+
+                entity.Property(e => e.Typing)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("typing");
+
                 entity.Property(e => e.Weight)
                     .HasColumnType("numeric(10, 2)")
                     .HasColumnName("weight");
+            });
 
-                entity.Property(e => e.Wire)
+            modelBuilder.Entity<Stock>(entity =>
+            {
+                entity.ToTable("stock");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.FinishAmount).HasColumnName("finish_amount");
+
+                entity.Property(e => e.IsDeleted)
+                    .HasColumnName("is_deleted")
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.StockId)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("stock_id");
+
+                entity.Property(e => e.UpdateTime)
+                    .HasColumnType("smalldatetime")
+                    .HasColumnName("update_time")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.Weight)
                     .HasColumnType("numeric(10, 2)")
-                    .HasColumnName("wire");
+                    .HasColumnName("weight");
             });
 
             OnModelCreatingPartial(modelBuilder);

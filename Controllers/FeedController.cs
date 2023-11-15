@@ -21,6 +21,7 @@ namespace FeedAPI.Controllers
         public async Task<ActionResult<List<FeedInformation>>> GetFeedInformation()
         {
             var lists = await _feedService.GetFeedInformationAsync();
+            await _hubContext.Clients.All.SendAsync("FeedChange", lists);
             return Ok(lists); 
         }
 
