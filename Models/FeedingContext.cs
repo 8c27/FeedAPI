@@ -20,7 +20,7 @@ namespace FeedAPI.Models
 
         public virtual DbSet<ClientInformation> ClientInformation { get; set; }
         public virtual DbSet<FeedInformation> FeedInformation { get; set; }
-        public virtual DbSet<Stock> Stock { get; set; }
+        public virtual DbSet<StockInformation> Stock { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -235,7 +235,7 @@ namespace FeedAPI.Models
                     .HasConstraintName("FK_feed_information_stock");
             });
 
-            modelBuilder.Entity<Stock>(entity =>
+            modelBuilder.Entity<StockInformation>(entity =>
             {
                 entity.ToTable("stock");
 

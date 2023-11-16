@@ -8,10 +8,10 @@ namespace FeedAPI.Services
 
     public interface IStockService
     {
-        Task<List<Stock>> GetStocksAsync();
-        Task CreatStockAsync (Stock list);    // 新增
+        Task<List<StockInformation>> GetStocksAsync();
+        Task CreatStockAsync (StockInformation list);    // 新增
         Task DeleteStockAsync (int id);  // 刪除
-        Task UpdateStockAsync (Stock list);  // 編輯
+        Task UpdateStockAsync (StockInformation list);  // 編輯
 
     }
     public class StockService : IStockService
@@ -21,7 +21,7 @@ namespace FeedAPI.Services
         {
             _context = context;
         }
-        public async Task<List<Stock>> GetStocksAsync()
+        public async Task<List<StockInformation>> GetStocksAsync()
         {
             return await _context.Stock.Where(e => e.IsDeleted != true).ToListAsync();
         }
@@ -35,13 +35,13 @@ namespace FeedAPI.Services
             }
         }
 
-        public async Task CreatStockAsync (Stock list)
+        public async Task CreatStockAsync (StockInformation list)
         {
             _context.Stock.Add(list);
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateStockAsync(Stock list)
+        public async Task UpdateStockAsync(StockInformation list)
         {
             _context.Stock.Update(list);
             await _context.SaveChangesAsync();

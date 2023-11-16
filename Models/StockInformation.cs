@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace FeedAPI.Models
 {
-    public partial class Stock
+    public partial class StockInformation
     {
-        public Stock()
+        public StockInformation()
         {
             FeedInformation = new HashSet<FeedInformation>();
         }

@@ -72,17 +72,27 @@ namespace FeedAPI.Services
             var client = _context.ClientInformation.Where(s=>s.Id==e.ClientId).FirstOrDefault();
             var number = client.Number;
             var feed_number = _context.FeedInformation.Where(s=>s.ClientId==e.ClientId).OrderByDescending(s =>s.Id).Select(s=>s.FeedNumber).FirstOrDefault();
-            var ROCyear = new DateTime();
+            var ROCyear = DateTime.Now;
 
             if ( feed_number!=null)
-            {
-                var last = Int32.Parse(feed_number.Substring(feed_number.Length - 3));
-                var number_str = ROCyear.Year.ToString() + ROCyear.Month.ToString()+ (last+1).ToString().PadLeft(3, '0'); ;
+            {              
+                var yearmonth = feed_number.Substring(feed_number.Length - 4, feed_number.Length - 4 + 6);
+                if (ROCyear.Year.ToString() + ROCyear.Month.ToString().PadLeft(2, '0')== yearmonth)
+                {
+                    var last = Int32.Parse(feed_number.Substring(feed_number.Length - 3));
+                    feed_number = number + ROCyear.Year.ToString() + ROCyear.Month.ToString() + (last + 1).ToString().PadLeft(3, '0'); ;
+                }
+                else
+                {
+                    var last = "001";
+                    feed_number = number + ROCyear.Year.ToString() + ROCyear.Month.ToString().PadLeft(2, '0') + last;
+                }
+                
             }
             else
             {
                 var last = "001";
-                var number_str = ROCyear.Year.ToString() + ROCyear.Month.ToString() + last;
+                feed_number = number+ROCyear.Year.ToString() + ROCyear.Month.ToString().PadLeft(2, '0') + last;
             }
          
             e.FeedNumber = feed_number;

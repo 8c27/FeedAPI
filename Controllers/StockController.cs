@@ -20,14 +20,14 @@ namespace StockAPI.Controllers
             _hubContext = hubContext;
         }
         [HttpGet]
-        public async Task<ActionResult<List<Stock>>> GetStock()
+        public async Task<ActionResult<List<StockInformation>>> GetStock()
         {
             var lists = await _stockService.GetStocksAsync();
             return Ok(lists);
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<Stock>>> CreatStock(Stock list)
+        public async Task<ActionResult<List<StockInformation>>> CreatStock(StockInformation list)
         {
             await _stockService.CreatStockAsync(list);
             var lists = await _stockService.GetStocksAsync();
@@ -35,7 +35,7 @@ namespace StockAPI.Controllers
             return Ok();
         }
         [HttpDelete("{id}")]
-        public async Task<ActionResult<List<Stock>>> DeleteStock(int id)
+        public async Task<ActionResult<List<StockInformation>>> DeleteStock(int id)
         {
             await _stockService.DeleteStockAsync(id);
             var lists = await _stockService.GetStocksAsync();
@@ -43,7 +43,7 @@ namespace StockAPI.Controllers
             return NoContent();
         }
         [HttpPut("{id}")]
-        public async Task<ActionResult<List<Stock>>> UpdateStock(int id, Stock list)
+        public async Task<ActionResult<List<StockInformation>>> UpdateStock(int id, StockInformation list)
         {
             if (id != list.Id)
                 return BadRequest();
