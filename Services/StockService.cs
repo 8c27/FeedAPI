@@ -1,6 +1,7 @@
 ﻿using FeedAPI.Models;
+using FeedAPI.VMs;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.VisualBasic;
 
 namespace FeedAPI.Services
 {
@@ -8,7 +9,7 @@ namespace FeedAPI.Services
 
     public interface IStockService
     {
-        Task<List<StockInformation>> GetStocksAsync();
+        Task<List<Stock>> GetStocksAsync();
         Task CreatStockAsync (StockInformation list);    // 新增
         Task DeleteStockAsync (int id);  // 刪除
         Task UpdateStockAsync (StockInformation list);  // 編輯
@@ -21,9 +22,20 @@ namespace FeedAPI.Services
         {
             _context = context;
         }
-        public async Task<List<StockInformation>> GetStocksAsync()
+        public async Task<List<Stock>> GetStocksAsync()
         {
-            return await _context.Stock.Where(e => e.IsDeleted != true).ToListAsync();
+            return await _context.Stock.Where(e => e.IsDeleted != true)
+            .Select( e => new Stock
+            {
+                Id = e.Id,
+                UpdateTime = DateTime.Now,
+                FinishAmount = e.FinishAmount,
+                Weight = e.Weight, 
+                IsDeleted = e.IsDeleted,
+                StockName = e.StockName,
+                Feed = e.FeedInformation.Where(s=>s.IsDeleted!=true).ToList(),
+            })
+            .ToListAsync();
         }
         public async Task DeleteStockAsync (int id)
         {

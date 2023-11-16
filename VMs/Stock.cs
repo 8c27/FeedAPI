@@ -10,6 +10,6 @@ namespace FeedAPI.VMs
         public int? FinishAmount { get; set; }
         public decimal? Weight { get; set; }
         public bool? IsDeleted { get; set; }
-        public List<FeedInformation>?Feed { get;}
+        public List<FeedInformation>?Feed { get; set; }
     }
 }
