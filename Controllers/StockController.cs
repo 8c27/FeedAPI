@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using FeedAPI.Models;
 using Microsoft.AspNetCore.SignalR;
+using FeedAPI.Models;
+using FeedAPI.Services;
 
-namespace FeedAPI.Controllers
+namespace StockAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -25,7 +27,7 @@ namespace FeedAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<Stock>>> CreatFeed(Stock list)
+        public async Task<ActionResult<List<Stock>>> CreatStock(Stock list)
         {
             await _stockService.CreatStockAsync(list);
             var lists = await _stockService.GetStocksAsync();
@@ -33,7 +35,7 @@ namespace FeedAPI.Controllers
             return Ok();
         }
         [HttpDelete("{id}")]
-        public async Task<ActionResult<List<Stock>>> DeleteFeed(int id)
+        public async Task<ActionResult<List<Stock>>> DeleteStock(int id)
         {
             await _stockService.DeleteStockAsync(id);
             var lists = await _stockService.GetStocksAsync();
@@ -41,7 +43,7 @@ namespace FeedAPI.Controllers
             return NoContent();
         }
         [HttpPut("{id}")]
-        public async Task<ActionResult<List<Stock>>> UpdateFeed(int id, Stock list)
+        public async Task<ActionResult<List<Stock>>> UpdateStock(int id, Stock list)
         {
             if (id != list.Id)
                 return BadRequest();

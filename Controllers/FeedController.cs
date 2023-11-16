@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using FeedAPI.Models;
 using Microsoft.AspNetCore.SignalR;
+using FeedAPI.VMs;
 
 namespace FeedAPI.Controllers
 {
@@ -26,7 +27,7 @@ namespace FeedAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<FeedInformation>>> CreatFeed(FeedInformation list)
+        public async Task<ActionResult<List<Feed>>> CreatFeed(Feed list)
         {
             await _feedService.CreatFeedAsync(list);
             var lists = await _feedService.GetFeedInformationAsync();

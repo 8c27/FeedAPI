@@ -9,7 +9,7 @@ namespace FeedAPI.Models
     {
         public int Id { get; set; }
         public DateTime? CreationTime { get; set; }
-        public string Manufacturer { get; set; }
+        public int? ClientId { get; set; }
         public string ItemNumber { get; set; }
         public string ItemName { get; set; }
         public string Material { get; set; }
@@ -32,11 +32,13 @@ namespace FeedAPI.Models
         public string Special { get; set; }
         public string Description { get; set; }
         public string Machine { get; set; }
-        public string ListId { get; set; }
-        public string ManufacturerId { get; set; }
+        public string FeedNumber { get; set; }
         public string Project { get; set; }
         public string Mm { get; set; }
         public bool? IsDeleted { get; set; }
-        public string StockId { get; set; }
+        public int? StockId { get; set; }
+
+        public virtual ClientInformation Client { get; set; }
+        public virtual Stock Stock { get; set; }
     }
 }

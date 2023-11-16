@@ -7,11 +7,18 @@ namespace FeedAPI.Models
 {
     public partial class Stock
     {
+        public Stock()
+        {
+            FeedInformation = new HashSet<FeedInformation>();
+        }
+
         public int Id { get; set; }
         public DateTime? UpdateTime { get; set; }
-        public string StockId { get; set; }
+        public string StockName { get; set; }
         public int? FinishAmount { get; set; }
         public decimal? Weight { get; set; }
         public bool? IsDeleted { get; set; }
+
+        public virtual ICollection<FeedInformation> FeedInformation { get; set; }
     }
 }
