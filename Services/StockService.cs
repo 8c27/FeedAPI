@@ -24,11 +24,11 @@ namespace FeedAPI.Services
         }
         public async Task<List<Stock>> GetStocksAsync()
         {
-            return await _context.Stock.Where(e => e.IsDeleted != true)
+            return await _context.StockInformation.Where(e => e.IsDeleted != true)
             .Select( e => new Stock
             {
                 Id = e.Id,
-                UpdateTime = DateTime.Now,
+                UpdateTime =e.UpdateTime,
                 FinishAmount = e.FinishAmount,
                 Weight = e.Weight, 
                 IsDeleted = e.IsDeleted,
@@ -39,7 +39,7 @@ namespace FeedAPI.Services
         }
         public async Task DeleteStockAsync (int id)
         {
-            var lists = await _context.Stock.FindAsync(id);
+            var lists = await _context.StockInformation.FindAsync(id);
             if (lists != null)
             {
                 lists.IsDeleted = true;
@@ -49,13 +49,13 @@ namespace FeedAPI.Services
 
         public async Task CreatStockAsync (StockInformation list)
         {
-            _context.Stock.Add(list);
+            _context.StockInformation.Add(list);
             await _context.SaveChangesAsync();
         }
 
         public async Task UpdateStockAsync(StockInformation list)
         {
-            _context.Stock.Update(list);
+            _context.StockInformation.Update(list);
             await _context.SaveChangesAsync();
         }
     }

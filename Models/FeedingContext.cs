@@ -20,7 +20,7 @@ namespace FeedAPI.Models
 
         public virtual DbSet<ClientInformation> ClientInformation { get; set; }
         public virtual DbSet<FeedInformation> FeedInformation { get; set; }
-        public virtual DbSet<StockInformation> Stock { get; set; }
+        public virtual DbSet<StockInformation> StockInformation { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -237,7 +237,7 @@ namespace FeedAPI.Models
 
             modelBuilder.Entity<StockInformation>(entity =>
             {
-                entity.ToTable("stock");
+                entity.ToTable("stock_information");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
@@ -259,7 +259,7 @@ namespace FeedAPI.Models
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Weight)
-                    .HasColumnType("numeric(10, 2)")
+                    .HasColumnType("numeric(10, 3)")
                     .HasColumnName("weight");
             });
 

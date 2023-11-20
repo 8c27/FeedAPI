@@ -62,6 +62,7 @@ namespace FeedAPI.Services
                     Mm = e.Mm,
                     IsDeleted = e.IsDeleted,
                     StockId = e.StockId,
+                    StockName = e.Stock.StockName
                 }
                 
                 ).ToListAsync();
