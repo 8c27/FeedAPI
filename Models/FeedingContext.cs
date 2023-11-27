@@ -208,6 +208,8 @@ namespace FeedAPI.Models
                     .IsUnicode(false)
                     .HasColumnName("special");
 
+                entity.Property(e => e.Status).HasColumnName("status");
+
                 entity.Property(e => e.StockId).HasColumnName("stock_id");
 
                 entity.Property(e => e.Taper)

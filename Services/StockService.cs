@@ -33,7 +33,7 @@ namespace FeedAPI.Services
                 Weight = e.Weight, 
                 IsDeleted = e.IsDeleted,
                 StockName = e.StockName,
-                Feed = e.FeedInformation.Where(s=>s.IsDeleted!=true).ToList(),
+                Feed = e.FeedInformation.Where(s=>s.Status!=true).ToList(),
             })
             .ToListAsync();
         }

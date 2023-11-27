@@ -62,7 +62,8 @@ namespace FeedAPI.Services
                     Mm = e.Mm,
                     IsDeleted = e.IsDeleted,
                     StockId = e.StockId,
-                    StockName = e.Stock.StockName
+                    StockName = e.Stock.StockName,
+                    Status = e.Status,
                 }
                 
                 ).ToListAsync();
@@ -128,6 +129,7 @@ namespace FeedAPI.Services
                 Mm = e.Mm,
                 IsDeleted = e.IsDeleted,
                 StockId = e.StockId,
+                Status = e.Status,
             };
             // 新增資料
             _context.FeedInformation.Add(feed);

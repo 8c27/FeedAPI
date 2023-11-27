@@ -37,6 +37,7 @@ namespace FeedAPI.Models
         public string Mm { get; set; }
         public bool? IsDeleted { get; set; }
         public int? StockId { get; set; }
+        public bool? Status { get; set; }
 
         public virtual ClientInformation Client { get; set; }
         public virtual StockInformation Stock { get; set; }

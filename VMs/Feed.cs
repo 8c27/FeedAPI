@@ -34,5 +34,6 @@
         public bool? IsDeleted { get; set; }
         public int? StockId { get; set; }
         public string? StockName { get; set; }
+        public bool? Status { get; set; }
     }
 }
