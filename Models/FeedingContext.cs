@@ -20,6 +20,11 @@ namespace FeedAPI.Models
 
         public virtual DbSet<ClientInformation> ClientInformation { get; set; }
         public virtual DbSet<FeedInformation> FeedInformation { get; set; }
+        public virtual DbSet<LoginInfo> LoginInfo { get; set; }
+        public virtual DbSet<LoginInfoRoles> LoginInfoRoles { get; set; }
+        public virtual DbSet<LoginMenus> LoginMenus { get; set; }
+        public virtual DbSet<LoginRoles> LoginRoles { get; set; }
+        public virtual DbSet<LoginRolesMenus> LoginRolesMenus { get; set; }
         public virtual DbSet<StockInformation> StockInformation { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -235,6 +240,132 @@ namespace FeedAPI.Models
                     .WithMany(p => p.FeedInformation)
                     .HasForeignKey(d => d.StockId)
                     .HasConstraintName("FK_feed_information_stock");
+            });
+
+            modelBuilder.Entity<LoginInfo>(entity =>
+            {
+                entity.ToTable("login_info");
+
+                entity.HasIndex(e => e.Username, "IX_login_info")
+                    .IsUnique();
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Description)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("description");
+
+                entity.Property(e => e.Disabled).HasColumnName("disabled");
+
+                entity.Property(e => e.Password)
+                    .IsRequired()
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasColumnName("password");
+
+                entity.Property(e => e.Username)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("username");
+            });
+
+            modelBuilder.Entity<LoginInfoRoles>(entity =>
+            {
+                entity.ToTable("login_info_roles");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.InfoId).HasColumnName("info_id");
+
+                entity.Property(e => e.RoleId).HasColumnName("role_id");
+
+                entity.HasOne(d => d.Info)
+                    .WithMany(p => p.LoginInfoRoles)
+                    .HasForeignKey(d => d.InfoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_login_info_roles_login_info");
+
+                entity.HasOne(d => d.Role)
+                    .WithMany(p => p.LoginInfoRoles)
+                    .HasForeignKey(d => d.RoleId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_login_info_roles_login_roles");
+            });
+
+            modelBuilder.Entity<LoginMenus>(entity =>
+            {
+                entity.ToTable("login_menus");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Description)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("description");
+
+                entity.Property(e => e.Icon)
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasColumnName("icon");
+
+                entity.Property(e => e.MenuName)
+                    .IsRequired()
+                    .HasMaxLength(25)
+                    .IsUnicode(false)
+                    .HasColumnName("menu_name");
+
+                entity.Property(e => e.Url)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("url");
+            });
+
+            modelBuilder.Entity<LoginRoles>(entity =>
+            {
+                entity.ToTable("login_roles");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Description)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("description");
+
+                entity.Property(e => e.Disabled).HasColumnName("disabled");
+
+                entity.Property(e => e.IsAdmin).HasColumnName("isAdmin");
+
+                entity.Property(e => e.RoleName)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("role_name");
+            });
+
+            modelBuilder.Entity<LoginRolesMenus>(entity =>
+            {
+                entity.ToTable("login_roles_menus");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.MenuId).HasColumnName("menu_id");
+
+                entity.Property(e => e.RoleId).HasColumnName("role_id");
+
+                entity.HasOne(d => d.Menu)
+                    .WithMany(p => p.LoginRolesMenus)
+                    .HasForeignKey(d => d.MenuId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_login_roles_menus_login_menus");
+
+                entity.HasOne(d => d.Role)
+                    .WithMany(p => p.LoginRolesMenus)
+                    .HasForeignKey(d => d.RoleId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_login_roles_menus_login_roles");
             });
 
             modelBuilder.Entity<StockInformation>(entity =>

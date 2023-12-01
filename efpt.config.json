@@ -23,6 +23,26 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[login_info]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[login_info_roles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[login_menus]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[login_roles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[login_roles_menus]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[stock_information]",
          "ObjectType": 0
       }
