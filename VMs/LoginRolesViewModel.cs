@@ -15,7 +15,7 @@ namespace SEPVDB_Api.Models.ViewModels
         [Required]
         public bool Is_admin { get; set; }
 
-        public List<LoginMenus> Menus { get; set; }
+        public List<LoginMenus>? Menus { get; set; }
     }
 
     public class LoginRolesSelectorViewModel

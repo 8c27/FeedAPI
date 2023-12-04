@@ -55,7 +55,7 @@ namespace SEPVDB_Api.Controllers
             }
         }
 
-        [HttpPatch("{id}")]
+        [HttpPut("{id}")]
         public IActionResult Edit(int id, LoginInfoViewModel viewModel)
         {
           

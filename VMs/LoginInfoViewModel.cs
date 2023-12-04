@@ -23,7 +23,7 @@ namespace SEPVDB_Api.Models.ViewModels
         [MaxLength(20)]
         public string Username { get; set; }
         [MaxLength(30)]
-        public string Password { get; set; }
+        public string? Password { get; set; }
         [Required]
         public string Description { get; set; }
         [Required]
