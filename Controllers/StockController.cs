@@ -52,6 +52,13 @@ namespace StockAPI.Controllers
             await _hubContext.Clients.All.SendAsync("StockChange", lists);
             return Ok();
         }
-
+        [HttpPut("~/stockedit/{quantity}")]
+        public async Task<ActionResult<List<StockInformation>>> EditStockAmount(int quantity,StockInformation list)
+        {
+            await _stockService.EditStockAmountAsync(list, quantity);
+            var lists = await _stockService.GetStocksAsync();
+            await _hubContext.Clients.All.SendAsync("StockChange", lists);
+            return Ok();
+        }
     }
 }

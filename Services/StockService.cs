@@ -13,7 +13,7 @@ namespace FeedAPI.Services
         Task CreatStockAsync (StockInformation list);    // 新增
         Task DeleteStockAsync (int id);  // 刪除
         Task UpdateStockAsync (StockInformation list);  // 編輯
-
+        Task EditStockAmountAsync(StockInformation list, int quantity);  // 庫存數量調整
     }
     public class StockService : IStockService
     {
@@ -56,6 +56,13 @@ namespace FeedAPI.Services
         public async Task UpdateStockAsync(StockInformation list)
         {
             _context.StockInformation.Update(list);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task EditStockAmountAsync(StockInformation list, int quantity)
+        {
+            var stock = _context.StockInformation.Where(e => e.StockName == list.StockName).FirstOrDefault();
+            stock.FinishAmount = stock.FinishAmount + quantity;
             await _context.SaveChangesAsync();
         }
     }

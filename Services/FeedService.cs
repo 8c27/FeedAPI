@@ -78,7 +78,7 @@ namespace FeedAPI.Services
 
             if ( feed_number!=null)
             {              
-                var yearmonth = feed_number.Substring(feed_number.Length - 4, feed_number.Length - 4 + 6);
+                var yearmonth = feed_number.Substring(feed_number.Length - 9, 6);
                 if (ROCyear.Year.ToString() + ROCyear.Month.ToString().PadLeft(2, '0')== yearmonth)
                 {
                     var last = Int32.Parse(feed_number.Substring(feed_number.Length - 3));
@@ -148,8 +148,25 @@ namespace FeedAPI.Services
         public async Task UpdataFeedAsync(FeedInformation list)
         {
             // 更新資料
-            _context.FeedInformation.Update(list);
-            await _context.SaveChangesAsync();
+            var stock = _context.StockInformation.Where(e => e.Id == list.StockId).FirstOrDefault();
+            var oldlist = _context.FeedInformation.AsNoTracking().Where(e => e.Id == list.Id).FirstOrDefault();
+            if (list.Status == true)
+            {
+                if(oldlist.Status == false)
+                {
+                    stock.FinishAmount = (int?)(stock.FinishAmount - list.Quantity);
+                }
+            }
+            else
+            {
+                if (oldlist.Status == true)
+                {
+                    stock.FinishAmount = (int?)(stock.FinishAmount + list.Quantity);
+                }
+            }
+             _context.FeedInformation.Update(list);
+             await _context.SaveChangesAsync();
+            
         }
     }
 }
