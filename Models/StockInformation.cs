@@ -18,7 +18,9 @@ namespace FeedAPI.Models
         public int? FinishAmount { get; set; }
         public decimal? Weight { get; set; }
         public bool? IsDeleted { get; set; }
+        public int? ClientId { get; set; }
 
+        public virtual ClientInformation Client { get; set; }
         public virtual ICollection<FeedInformation> FeedInformation { get; set; }
     }
 }

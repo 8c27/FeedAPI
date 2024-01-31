@@ -190,6 +190,11 @@ namespace FeedAPI.Models
                     .IsUnicode(false)
                     .HasColumnName("peel_2");
 
+                entity.Property(e => e.Place)
+                    .HasMaxLength(200)
+                    .IsUnicode(false)
+                    .HasColumnName("place");
+
                 entity.Property(e => e.Project)
                     .HasMaxLength(20)
                     .IsUnicode(false)
@@ -374,6 +379,8 @@ namespace FeedAPI.Models
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
+                entity.Property(e => e.ClientId).HasColumnName("client_id");
+
                 entity.Property(e => e.FinishAmount).HasColumnName("finish_amount");
 
                 entity.Property(e => e.IsDeleted)
@@ -394,6 +401,11 @@ namespace FeedAPI.Models
                 entity.Property(e => e.Weight)
                     .HasColumnType("numeric(10, 3)")
                     .HasColumnName("weight");
+
+                entity.HasOne(d => d.Client)
+                    .WithMany(p => p.StockInformation)
+                    .HasForeignKey(d => d.ClientId)
+                    .HasConstraintName("FK_stock_information_client_information");
             });
 
             OnModelCreatingPartial(modelBuilder);

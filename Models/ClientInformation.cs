@@ -10,6 +10,7 @@ namespace FeedAPI.Models
         public ClientInformation()
         {
             FeedInformation = new HashSet<FeedInformation>();
+            StockInformation = new HashSet<StockInformation>();
         }
 
         public int Id { get; set; }
@@ -26,5 +27,6 @@ namespace FeedAPI.Models
         public bool? IsDeleted { get; set; }
 
         public virtual ICollection<FeedInformation> FeedInformation { get; set; }
+        public virtual ICollection<StockInformation> StockInformation { get; set; }
     }
 }
