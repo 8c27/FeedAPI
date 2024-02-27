@@ -39,6 +39,7 @@ namespace FeedAPI.Models
         public int? StockId { get; set; }
         public bool? Status { get; set; }
         public string Place { get; set; }
+        public bool? Delivery { get; set; }
 
         public virtual ClientInformation Client { get; set; }
         public virtual StockInformation Stock { get; set; }

@@ -117,6 +117,8 @@ namespace FeedAPI.Models
                     .HasColumnName("creation_time")
                     .HasDefaultValueSql("(getdate())");
 
+                entity.Property(e => e.Delivery).HasColumnName("delivery");
+
                 entity.Property(e => e.Description)
                     .HasMaxLength(100)
                     .IsUnicode(false)

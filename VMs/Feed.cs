@@ -35,5 +35,7 @@
         public int? StockId { get; set; }
         public string? StockName { get; set; }
         public bool? Status { get; set; }
+
+        public string? Place { get; set; }
     }
 }
