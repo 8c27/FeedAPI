@@ -17,6 +17,7 @@ namespace FeedAPI.Models
         public string Description { get; set; }
         public string Url { get; set; }
         public string Icon { get; set; }
+        public int? OrderNumber { get; set; }
 
         public virtual ICollection<LoginRolesMenus> LoginRolesMenus { get; set; }
     }

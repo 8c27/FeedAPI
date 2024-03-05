@@ -323,6 +323,8 @@ namespace FeedAPI.Models
                     .IsUnicode(false)
                     .HasColumnName("menu_name");
 
+                entity.Property(e => e.OrderNumber).HasColumnName("order_number");
+
                 entity.Property(e => e.Url)
                     .IsRequired()
                     .HasMaxLength(20)

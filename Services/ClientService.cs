@@ -33,7 +33,7 @@ namespace FeedAPI.Services
             var list = await _context.ClientInformation.FindAsync(id);
             if (list != null)
             {
-                list.IsDeleted = true;
+                list.IsDeleted = false;
                 await _context.SaveChangesAsync();  
             }
         }
