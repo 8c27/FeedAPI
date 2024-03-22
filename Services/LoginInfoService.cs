@@ -1,5 +1,6 @@
 ﻿using FeedAPI.Models;
 using SEPVDB_Api.Models.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -62,9 +63,9 @@ namespace SEPVDB_Api.Services
             {
                 var menus = new List<LoginMenus>();
                 if (!data.Is_admin)
-                    menus = _context.LoginRolesMenus.Where(a => a.RoleId == data.Id).Select(b => b.Menu).ToList();
+                    menus = _context.LoginRolesMenus.Where(a => a.RoleId == data.Id).Select(b => b.Menu).OrderBy(c => c.OrderNumber).ToList();
                 else
-                    menus = _context.LoginMenus.ToList();
+                    menus = _context.LoginMenus.OrderBy(c => c.OrderNumber).ToList();
                 data.Menus = menus;
             }
             return datas;

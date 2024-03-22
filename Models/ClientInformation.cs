@@ -13,7 +13,7 @@ namespace FeedAPI.Models
             StockInformation = new HashSet<StockInformation>();
         }
 
-        public int Id { get; set; }
+        public long Id { get; set; }
         public DateTime? CreationTime { get; set; }
         public string Number { get; set; }
         public string Name { get; set; }
@@ -25,6 +25,7 @@ namespace FeedAPI.Models
         public int? Compiled { get; set; }
         public string Description { get; set; }
         public bool? IsDeleted { get; set; }
+        public string NickName { get; set; }
 
         public virtual ICollection<FeedInformation> FeedInformation { get; set; }
         public virtual ICollection<StockInformation> StockInformation { get; set; }

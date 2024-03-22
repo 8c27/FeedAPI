@@ -28,7 +28,7 @@ namespace FeedAPI.Controllers
             var dirInfo = new DirectoryInfo(path);
             dirInfo.Create();
             //排除不合法的檔案(副檔名，檔案大於15mb)
-            string[] allowExtension = { ".jpg", ".png" };
+            string[] allowExtension = { ".jpg", ".png", ".pdf" };
 
 
             var readyToSave = files.Where(p => allowExtension.Contains(System.IO.Path.GetExtension(p.FileName).ToLower())).
@@ -65,7 +65,7 @@ namespace FeedAPI.Controllers
             }
 
             //排除不合法的檔案(副檔名，檔案大於15mb)
-            string[] allowExtension = { ".jpg", ".png" };
+            string[] allowExtension = { ".jpg", ".png", ".pdf" };
 
             var files = di.EnumerateFiles("*.*");
             var readyToSave = files.Where(p => allowExtension.Contains(System.IO.Path.GetExtension(p.FullName).ToLower())).

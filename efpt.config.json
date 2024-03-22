@@ -19,6 +19,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[delivery_address]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[feed_information]",
          "ObjectType": 0
       },

@@ -34,37 +34,17 @@ namespace FeedAPI.Services
                     Id= e.Id,
                     CreationTime = e.CreationTime,
                     ClientId= e.ClientId,
-                    ClientName=e.Client.Name,
-                    ItemName=e.ItemName,
-                    ItemNumber =e.ItemNumber,
-                    Material = e.Material,
-                    Size = e.Size,
-                    Weight = e.Weight, 
-                    Pcs = e.Pcs,
-                    Quantity = e.Quantity,
-                    Cost = e.Cost,
-                    Raise  = e.Raise,
-                    Class = e.Class,   
-                    Peel1 = e.Peel1,
-                    Peel2 = e.Peel2,
-                    Typing = e.Typing,
-                    Chamfer = e.Chamfer,   
-                    Hole1 = e.Hole1, 
-                    Hole2 = e.Hole2,
-                    Ditch = e.Ditch,   
-                    Taper = e.Taper,
-                    Ear = e.Ear,
-                    Special = e.Special,
+                    ClientName=e.Client.Name,    
+                    Quantity = e.Quantity,           
                     Description = e.Description,   
                     Machine = e.Machine,
-                    FeedNumber = e.FeedNumber, 
-                    Project = e.Project,
-                    Mm = e.Mm,
+                    FeedNumber = e.FeedNumber,             
                     IsDeleted = e.IsDeleted,
                     StockId = e.StockId,
                     StockName = e.Stock.StockName,
                     Status = e.Status,
-                    Place = e.Place,
+                    Weight = e.Weight,
+                    Raw = e.Raw,
                 }
                 
                 ).ToListAsync();
@@ -103,35 +83,15 @@ namespace FeedAPI.Services
             var feed = new FeedInformation
             {
                 ClientId = e.ClientId,
-                ItemName = e.ItemName,
-                ItemNumber = e.ItemNumber,
-                Material = e.Material,
-                Size = e.Size,
-                Weight = e.Weight,
-                Pcs = e.Pcs,
                 Quantity = e.Quantity,
-                Cost = e.Cost,
-                Raise = e.Raise,
-                Class = e.Class,
-                Peel1 = e.Peel1,
-                Peel2 = e.Peel2,
-                Typing = e.Typing,
-                Chamfer = e.Chamfer,
-                Hole1 = e.Hole1,
-                Hole2 = e.Hole2,
-                Ditch = e.Ditch,
-                Taper = e.Taper,
-                Ear = e.Ear,
-                Special = e.Special,
                 Description = e.Description,
                 Machine = e.Machine,
                 FeedNumber = e.FeedNumber,
-                Project = e.Project,
-                Mm = e.Mm,
                 IsDeleted = e.IsDeleted,
                 StockId = e.StockId,
                 Status = e.Status,
-                Place = e.Place,
+                Weight = e.Weight,
+                Raw = e.Raw,
             };
             // 新增資料
             _context.FeedInformation.Add(feed);
@@ -156,7 +116,7 @@ namespace FeedAPI.Services
             {
                 if(oldlist.Status == false)
                 {
-                    stock.FinishAmount = (int?)(stock.FinishAmount - list.Quantity);
+                    stock.FinishAmount = (int?)(stock.FinishAmount - list.Quantity < 0 ? 0 : stock.FinishAmount - list.Quantity);
                 }
             }
             else

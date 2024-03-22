@@ -16,6 +16,7 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddScoped<IFeedService, FeedService>();
     builder.Services.AddScoped<IClientService, ClientService>();
     builder.Services.AddScoped<IStockService, StockService>();
+    builder.Services.AddScoped<IDeliveryService, DeliveryService>();
     builder.Services.AddDbContext<FeedingContext>(options =>
    options.UseSqlServer(builder.Configuration.GetConnectionString("FeedContext")));
     builder.Services.AddSingleton<JwtHelpers>();
