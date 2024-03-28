@@ -9,7 +9,6 @@ namespace FeedAPI.Services
         Task<List<DeliveryAddress>> GetDataAsync();
         Task CreatDataAsync(DeliveryAddress list);
         Task DeleteDataAsync(int id);
-        Task EditDataAsync(DeliveryAddress list);
     }
     public class DeliveryService : IDeliveryService
     {
@@ -36,12 +35,6 @@ namespace FeedAPI.Services
                 list.Status = true;
                 await _context.SaveChangesAsync();  
             }
-        }
-
-        public async Task EditDataAsync(DeliveryAddress list)
-        {
-            _context.DeliveryAddress.Update(list);
-            await _context.SaveChangesAsync();  
         }
     }
 }

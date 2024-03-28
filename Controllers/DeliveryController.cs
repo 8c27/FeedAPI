@@ -43,17 +43,5 @@ namespace FeedAPI.Controllers
             await _hubContext.Clients.All.SendAsync("DeliveryChange", lists);
             return NoContent();
         }
-        [HttpPut("{id}")]
-        public async Task<ActionResult<DeliveryAddress>> EditData(int id, DeliveryAddress list)
-        {
-            if (id != list.Id)
-            {
-                return BadRequest();
-            }
-            await _deliveryService.EditDataAsync(list);
-            var lists = await _deliveryService.GetDataAsync();
-            await _hubContext.Clients.All.SendAsync("DeliveryChange", lists);
-            return Ok();
-        }
     }
 }

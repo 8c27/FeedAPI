@@ -13,7 +13,7 @@ namespace FeedAPI.Services
     {
         Task<List<Feed>> GetFeedInformationAsync(); // 取的全部 FeedInformation 資料
         Task CreatFeedAsync(Feed list); // 創建
-        Task DeleteFeedAsync(int id);  // 刪除 
+        Task DeleteFeedAsync(long id);  // 刪除 
         Task UpdataFeedAsync(FeedInformation list); // 編輯
     }
     public class FeedService : IFeedService
@@ -45,6 +45,37 @@ namespace FeedAPI.Services
                     Status = e.Status,
                     Weight = e.Weight,
                     Raw = e.Raw,
+                    Stock = _context.StockInformation.Where(s => s.Id == e.StockId).Select(e => new Stock
+                    {
+                        Id = e.Id,
+                        UpdateTime = e.UpdateTime,
+                        FinishAmount = e.FinishAmount,
+                        Weight = e.Weight,
+                        IsDeleted = e.IsDeleted,
+                        StockName = e.StockName,
+                        ClientId = e.ClientId,
+                        ClientName = e.Client.Name,
+                        Material = e.Material,
+                        Size = e.Size,
+                        Pcs = e.Pcs,
+                        Cost = e.Cost,
+                        Raise = e.Raise,
+                        Class = e.Class,
+                        Peel1 = e.Peel1,
+                        Peel2 = e.Peel2,
+                        Typeing = e.Typing,
+                        Chamfer = e.Chamfer,
+                        Hole1 = e.Hole1,
+                        Hole2 = e.Hole2,
+                        Ditch = e.Ditch,
+                        Taper = e.Taper,
+                        Ear = e.Ear,
+                        Special = e.Special,
+                        Mm = e.Mm,
+                        Place = e.Place,
+                        Project = e.Project,
+                        Omi = e.Omi,
+                    }).ToList()
                 }
                 
                 ).ToListAsync();
@@ -97,7 +128,7 @@ namespace FeedAPI.Services
             _context.FeedInformation.Add(feed);
             await _context.SaveChangesAsync();
         }
-        public async Task DeleteFeedAsync(int id)
+        public async Task DeleteFeedAsync(long id)
         {
             // 刪除資料---> 將IsDeleted欄位設為 true 
             var list = await _context.FeedInformation.FindAsync(id);

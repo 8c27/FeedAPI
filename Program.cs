@@ -1,6 +1,7 @@
 using FeedAPI.Models;
 using FeedAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -67,7 +68,9 @@ builder.Services.AddCors(options => options.AddPolicy("CorsPolicy",
                    .AllowCredentials();
         }));
 // Add services to the container.
-builder.Services.AddSignalR();
+builder.Services.AddSignalR(e => {
+    e.EnableDetailedErrors = true;
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

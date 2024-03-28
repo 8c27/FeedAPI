@@ -31,7 +31,8 @@ namespace FeedAPI.VMs
         public string? Special { get; set; }
         public string? Mm { get; set; }
         public string? Place { get; set; }
-
+        public string? Project { get; set; }
+        public string? Omi { get; set; }
         public List<FeedInformation>?Feed { get; set; }
     }
 }

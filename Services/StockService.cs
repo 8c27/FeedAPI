@@ -11,7 +11,7 @@ namespace FeedAPI.Services
     {
         Task<List<Stock>> GetStocksAsync();
         Task CreatStockAsync (StockInformation list);    // 新增
-        Task DeleteStockAsync (int id);  // 刪除
+        Task DeleteStockAsync (long id);  // 刪除
         Task UpdateStockAsync (StockInformation list);  // 編輯
         Task EditStockAmountAsync(StockInformation list, int quantity);  // 庫存數量調整
     }
@@ -53,11 +53,27 @@ namespace FeedAPI.Services
                 Special = e.Special,
                 Mm = e.Mm,
                 Place = e.Place,
-                Feed = e.FeedInformation.Where(s=>s.Status!=true).ToList(),
+                Project = e.Project,
+                Omi = e.Omi,
+                Feed = e.FeedInformation.Select(e => new FeedInformation
+                {
+                    Id = e.Id,
+                    CreationTime = e.CreationTime,
+                    ClientId = e.ClientId,
+                    Quantity = e.Quantity,
+                    Description = e.Description,
+                    Machine = e.Machine,
+                    FeedNumber = e.FeedNumber,
+                    IsDeleted = e.IsDeleted,
+                    StockId = e.StockId,
+                    Status = e.Status,
+                    Weight = e.Weight,
+                    Raw = e.Raw,
+                }).Where(s=>s.Status!=true).ToList(),
             })
             .ToListAsync();
         }
-        public async Task DeleteStockAsync (int id)
+        public async Task DeleteStockAsync (long id)
         {
             var lists = await _context.StockInformation.FindAsync(id);
             if (lists != null)

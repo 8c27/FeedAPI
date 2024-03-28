@@ -1,4 +1,6 @@
-﻿namespace FeedAPI.VMs
+﻿using FeedAPI.Models;
+
+namespace FeedAPI.VMs
 {
     public class Feed
     {
@@ -16,5 +18,7 @@
         public bool? Status { get; set; }
         public decimal? Weight { get; set; }
         public string? Raw { get; set; }
+
+        public List<Stock>? Stock { get; set; }
     }
 }

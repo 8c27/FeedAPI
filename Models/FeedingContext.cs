@@ -357,6 +357,11 @@ namespace FeedAPI.Models
                     .IsUnicode(false)
                     .HasColumnName("mm");
 
+                entity.Property(e => e.Omi)
+                    .HasMaxLength(500)
+                    .IsUnicode(false)
+                    .HasColumnName("omi");
+
                 entity.Property(e => e.Pcs)
                     .HasColumnType("numeric(10, 2)")
                     .HasColumnName("pcs");
@@ -375,6 +380,11 @@ namespace FeedAPI.Models
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("place");
+
+                entity.Property(e => e.Project)
+                    .HasMaxLength(500)
+                    .IsUnicode(false)
+                    .HasColumnName("project");
 
                 entity.Property(e => e.Raise)
                     .HasColumnType("numeric(10, 2)")

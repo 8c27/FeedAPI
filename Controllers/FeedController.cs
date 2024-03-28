@@ -35,7 +35,7 @@ namespace FeedAPI.Controllers
             return Ok();
         }
         [HttpDelete("{id}")]
-        public async Task<ActionResult<List<FeedInformation>>> DeleteFeed(int id)
+        public async Task<ActionResult<List<FeedInformation>>> DeleteFeed(long id)
         {
             await _feedService.DeleteFeedAsync(id);
             var lists = await _feedService.GetFeedInformationAsync();
@@ -43,7 +43,7 @@ namespace FeedAPI.Controllers
             return NoContent();
         }
         [HttpPut("{id}")]
-        public async Task<ActionResult<List<FeedInformation>>> UpdateFeed(int id, FeedInformation list)
+        public async Task<ActionResult<List<FeedInformation>>> UpdateFeed(long id, FeedInformation list)
         {
             if (id != list.Id)
                 return BadRequest();
