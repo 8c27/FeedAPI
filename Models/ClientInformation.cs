@@ -26,6 +26,7 @@ namespace FeedAPI.Models
         public string Description { get; set; }
         public bool? IsDeleted { get; set; }
         public string NickName { get; set; }
+        public string Ltd { get; set; }
 
         public virtual ICollection<FeedInformation> FeedInformation { get; set; }
         public virtual ICollection<StockInformation> StockInformation { get; set; }

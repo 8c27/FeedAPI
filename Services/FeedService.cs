@@ -35,6 +35,7 @@ namespace FeedAPI.Services
                     CreationTime = e.CreationTime,
                     ClientId= e.ClientId,
                     ClientName=e.Client.Name,    
+                    Ltd = e.Client.Ltd,
                     Quantity = e.Quantity,           
                     Description = e.Description,   
                     Machine = e.Machine,

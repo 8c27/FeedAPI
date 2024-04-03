@@ -8,6 +8,7 @@ namespace FeedAPI.VMs
         public DateTime? CreationTime { get; set; }
         public long? ClientId { get; set; }
         public string? ClientName { get; set; }
+        public string? Ltd { get; set; }
         public decimal? Quantity { get; set; }
         public string? Description { get; set; }
         public string? Machine { get; set; }

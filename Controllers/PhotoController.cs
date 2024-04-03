@@ -18,9 +18,9 @@ namespace FeedAPI.Controllers
             _hubContext = hubContext;
         }
         [HttpPost("UploadFile")]
-        public string UploadFile([FromForm] ICollection<IFormFile> files, [FromForm] string feedNumber)
+        public string UploadFile([FromForm] ICollection<IFormFile> files, [FromForm] string stockId)
         {
-            string path = @"D:\SideProject\Photo\" + feedNumber;
+            string path = @"D:\SideProject\Photo\" + stockId;
             // @"D:\SideProject\Photo"
             //file.sa
             // 過濾
@@ -50,10 +50,10 @@ namespace FeedAPI.Controllers
             return $"got file: {readyToSave.Count()}";
         }
         [HttpGet("GetPhotoList")]
-        public List<Photo> Photos([FromQuery] string feedNumber)
+        public List<Photo> Photos([FromQuery] string stockId)
         {
             string path = @"D:\SideProject\Photo\";
-            path = Path.Combine(path, feedNumber.ToString());
+            path = Path.Combine(path, stockId.ToString());
             DirectoryInfo di = new DirectoryInfo(path);
             // @"D:\photos\wip"
             List<Photo> list = new List<Photo>();
@@ -90,7 +90,7 @@ namespace FeedAPI.Controllers
         }
 
         [HttpGet("GetPhoto")]
-        public IActionResult Get(string feedNumber, string fileName)
+        public IActionResult Get(string stockId, string fileName)
         {
             //string path = @"c:\123";
             //var path = @"c:\123\"+ fileName + fileType;
@@ -100,7 +100,7 @@ namespace FeedAPI.Controllers
             //result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
             //return result;
 
-            var path = @"D:\SideProject\Photo\" + feedNumber + '\\' + fileName; ;
+            var path = @"D:\SideProject\Photo\" + stockId + '\\' + fileName; ;
             Byte[] b = System.IO.File.ReadAllBytes(path);   // You can use your own method over here.         
             return File(b, "image/jpeg");
 

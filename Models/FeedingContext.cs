@@ -63,6 +63,11 @@ namespace FeedAPI.Models
                     .HasColumnName("is_deleted")
                     .HasDefaultValueSql("((0))");
 
+                entity.Property(e => e.Ltd)
+                    .HasMaxLength(500)
+                    .IsUnicode(false)
+                    .HasColumnName("ltd");
+
                 entity.Property(e => e.Mobile)
                     .HasMaxLength(50)
                     .IsUnicode(false)
