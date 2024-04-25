@@ -21,7 +21,7 @@ namespace FeedAPI.VMs
         public string? Class { get; set; }
         public string? Peel1 { get; set; }
         public string? Peel2 { get; set; }
-        public string? Typeing { get; set; }
+        public string? Typing { get; set; }
         public string? Chamfer { get; set; }
         public string? Hole1 { get; set; }
         public string? Hole2 { get; set; }

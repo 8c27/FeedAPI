@@ -64,7 +64,7 @@ namespace FeedAPI.Services
                         Class = e.Class,
                         Peel1 = e.Peel1,
                         Peel2 = e.Peel2,
-                        Typeing = e.Typing,
+                        Typing = e.Typing,
                         Chamfer = e.Chamfer,
                         Hole1 = e.Hole1,
                         Hole2 = e.Hole2,
