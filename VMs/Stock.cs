@@ -33,6 +33,7 @@ namespace FeedAPI.VMs
         public string? Place { get; set; }
         public string? Project { get; set; }
         public string? Omi { get; set; }
+        public string? StockNumber { get; set; }
         public List<FeedInformation>?Feed { get; set; }
     }
 }

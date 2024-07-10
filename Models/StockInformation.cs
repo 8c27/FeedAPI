@@ -39,6 +39,7 @@ namespace FeedAPI.Models
         public string Place { get; set; }
         public string Project { get; set; }
         public string Omi { get; set; }
+        public string StockNumber { get; set; }
 
         public virtual ClientInformation Client { get; set; }
         public virtual ICollection<FeedInformation> FeedInformation { get; set; }

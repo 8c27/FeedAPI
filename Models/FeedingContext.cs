@@ -411,6 +411,11 @@ namespace FeedAPI.Models
                     .IsUnicode(false)
                     .HasColumnName("stock_name");
 
+                entity.Property(e => e.StockNumber)
+                    .HasMaxLength(500)
+                    .IsUnicode(false)
+                    .HasColumnName("stock_number");
+
                 entity.Property(e => e.Taper)
                     .HasMaxLength(50)
                     .IsUnicode(false)

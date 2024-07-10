@@ -55,6 +55,7 @@ namespace FeedAPI.Services
                 Place = e.Place,
                 Project = e.Project,
                 Omi = e.Omi,
+                StockNumber = e.StockNumber,
                 Feed = e.FeedInformation.Select(e => new FeedInformation
                 {
                     Id = e.Id,
