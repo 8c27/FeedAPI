@@ -16,6 +16,7 @@ namespace FeedAPI.VMs
         public bool? IsDeleted { get; set; }
         public long? StockId { get; set; }
         public string? StockName { get; set; }
+        public string? StockNumber { get; set; }
         public bool? Status { get; set; }
         public decimal? Weight { get; set; }
         public string? Raw { get; set; }

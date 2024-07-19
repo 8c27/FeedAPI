@@ -46,6 +46,7 @@ namespace FeedAPI.Services
                     Status = e.Status,
                     Weight = e.Weight,
                     Raw = e.Raw,
+                    StockNumber = e.Stock.StockNumber,
                     Stock = _context.StockInformation.Where(s => s.Id == e.StockId).Select(e => new Stock
                     {
                         Id = e.Id,
