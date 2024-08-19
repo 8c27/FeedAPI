@@ -8,6 +8,7 @@ namespace FeedAPI.Services
     {
         Task<List<DeliveryAddress>> GetDataAsync();
         Task CreatDataAsync(DeliveryAddress list);
+        Task EditDataOrderAsync(DeliveryAddress list);
         Task DeleteDataAsync(int id);
     }
     public class DeliveryService : IDeliveryService
@@ -19,7 +20,7 @@ namespace FeedAPI.Services
         }
         public async Task<List<DeliveryAddress>> GetDataAsync()
         {
-            return await _context.DeliveryAddress.Where(e => e.Status != true).ToListAsync();
+            return await _context.DeliveryAddress.Where(e => e.Status != true).OrderBy(e => e.OrderId).ToListAsync();
         }
 
         public async Task CreatDataAsync(DeliveryAddress list)
@@ -35,6 +36,12 @@ namespace FeedAPI.Services
                 list.Status = true;
                 await _context.SaveChangesAsync();  
             }
+        }
+
+        public async Task EditDataOrderAsync(DeliveryAddress list)
+        {
+            _context.DeliveryAddress.Update(list);
+            await _context.SaveChangesAsync();
         }
     }
 }

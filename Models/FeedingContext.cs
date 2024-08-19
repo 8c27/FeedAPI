@@ -113,6 +113,8 @@ namespace FeedAPI.Models
                     .IsUnicode(false)
                     .HasColumnName("name");
 
+                entity.Property(e => e.OrderId).HasColumnName("order_id");
+
                 entity.Property(e => e.Status).HasColumnName("status");
             });
 
